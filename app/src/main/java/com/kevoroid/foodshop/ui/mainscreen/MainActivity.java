@@ -1,6 +1,8 @@
-package com.kevoroid.foodshop;
+package com.kevoroid.foodshop.ui.mainscreen;
 
 import android.os.Bundle;
+import com.kevoroid.foodshop.R;
+import com.kevoroid.foodshop.ui.BaseActivity;
 
 public class MainActivity extends BaseActivity {
 

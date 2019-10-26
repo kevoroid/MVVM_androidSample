@@ -1,4 +1,4 @@
-package com.kevoroid.foodshop;
+package com.kevoroid.foodshop.ui;
 
 import android.os.Bundle;
 import androidx.annotation.Nullable;

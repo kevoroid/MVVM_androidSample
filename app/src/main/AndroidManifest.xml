@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 	package="com.kevoroid.foodshop">
 
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
 	<application
 		android:name=".YummyApplication"
 		android:allowBackup="true"
@@ -12,8 +15,8 @@
 		android:theme="@style/AppTheme"
 		android:fullBackupContent="false">
 
-		<activity android:name=".BaseActivity" />
-		<activity android:name=".MainActivity">
+		<activity android:name=".ui.BaseActivity" />
+		<activity android:name=".ui.mainscreen.MainActivity">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<action android:name="android.intent.action.VIEW" />
