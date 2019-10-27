@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.kevoroid.foodshop.R;
-import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.models.ProductList;
 import com.kevoroid.foodshop.models.viewmodels.ProductListViewModel;
 import com.kevoroid.foodshop.ui.BaseActivity;
