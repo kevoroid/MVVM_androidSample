@@ -33,6 +33,6 @@ public class BaseActivity extends AppCompatActivity {
 	}
 
 	private void openAbout() {
-		PromptHandler.showMsgToast(this, "Designed & Implemented by Kevoroid!\nhttps://kevoroid.github.io/");
+		PromptHandler.showMsgToast(this, getResources().getString(R.string.msg_about));
 	}
 }
