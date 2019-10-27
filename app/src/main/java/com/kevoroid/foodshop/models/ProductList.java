@@ -2,10 +2,11 @@ package com.kevoroid.foodshop.models;
 
 import java.util.List;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import com.google.gson.annotations.SerializedName;
 
-// Could have used Parcelable here but for sake of simplicity will avoid that!
-public class ProductList {
+public class ProductList implements Parcelable {
 
 	@SerializedName("id")
 	private String id;
@@ -15,6 +16,38 @@ public class ProductList {
 	private String description;
 	@SerializedName("products")
 	private List<Product> products = null;
+
+	protected ProductList(Parcel in) {
+		id = in.readString();
+		name = in.readString();
+		description = in.readString();
+		products = in.createTypedArrayList(Product.CREATOR);
+	}
+
+	@Override
+	public void writeToParcel(Parcel dest, int flags) {
+		dest.writeString(id);
+		dest.writeString(name);
+		dest.writeString(description);
+		dest.writeTypedList(products);
+	}
+
+	@Override
+	public int describeContents() {
+		return 0;
+	}
+
+	public static final Creator<ProductList> CREATOR = new Creator<ProductList>() {
+		@Override
+		public ProductList createFromParcel(Parcel in) {
+			return new ProductList(in);
+		}
+
+		@Override
+		public ProductList[] newArray(int size) {
+			return new ProductList[size];
+		}
+	};
 
 	public String getId() {
 		return id;
