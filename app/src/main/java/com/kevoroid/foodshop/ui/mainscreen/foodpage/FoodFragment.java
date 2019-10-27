@@ -8,21 +8,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.ui.BaseFragment;
+import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
+import com.kevoroid.foodshop.utils.BottomSheetHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-public class FoodFragment extends BaseFragment {
+public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 
 	private static final String FOOD_BUNDLE = "FOOD_BUNDLE";
 
 	private RecyclerView recyclerView;
 	private FoodAdapter foodAdapter;
 
-//	private List<Product> foodList = new ArrayList<>();
+	private ArrayList<Product> arrayList  = null;
 
 	public static FoodFragment newInstance(List<Product> foodList) {
 		System.out.println("FoodFragment.newInstance");
@@ -50,7 +54,7 @@ public class FoodFragment extends BaseFragment {
 		super.onViewCreated(view, savedInstanceState);
 		System.out.println("FoodFragment.onViewCreated -------------------------");
 
-		ArrayList<Product> arrayList  = null;
+//		ArrayList<Product> arrayList  = null;
 		if (getArguments() != null) {
 			System.out.println("FoodFragment.onViewCreated not null arguments!");
 			arrayList = getArguments().getParcelableArrayList(FOOD_BUNDLE);
@@ -62,9 +66,18 @@ public class FoodFragment extends BaseFragment {
 		}
 
 		System.out.println("FoodFragment.onViewCreated ---------------------------------");
-		foodAdapter = new FoodAdapter(arrayList);
+		foodAdapter = new FoodAdapter(this, arrayList);
 		recyclerView = view.findViewById(R.id.food_recyclerview);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		recyclerView.setAdapter(foodAdapter);
+	}
+
+	@Override
+	public void showSelectedTeam(Product id) {
+		System.out.println("FoodFragment.showSelectedTeam");
+//		System.out.println("FoodFragment.showSelectedTeam >> " + arrayList.get(id).getName());
+//		System.out.println("FoodFragment.showSelectedTeam >> " + arrayList.get() .getSalePrice().getAmount());
+//		showProductDetails(id);
+		BottomSheetHelper.showProductDetails(getActivity(), id);
 	}
 }

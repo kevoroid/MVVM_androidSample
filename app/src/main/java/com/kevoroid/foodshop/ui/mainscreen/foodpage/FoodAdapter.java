@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.Product;
+import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -17,9 +18,11 @@ import java.util.List;
 
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
+	private RecyclerViewCallback recyclerViewCallback;
 	private List<Product> allFood;
 
-	FoodAdapter(List<Product> data) {
+	FoodAdapter(RecyclerViewCallback recyclerViewCallback, List<Product> data) {
+		this.recyclerViewCallback = recyclerViewCallback;
 		this.allFood = data;
 	}
 
@@ -33,19 +36,13 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 	@Override
 	public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
 		try {
-			System.out.println("FoodAdapter.onBindViewHolder :::::::::::::::::::: " + allFood.size());
-			System.out.println("FoodAdapter.onBindViewHolder :::::::::::::::::::: " + allFood.get(position).getName());
-			System.out.println("FoodAdapter.onBindViewHolder :::::::::::::::::::: " + allFood.get(position).getSalePrice().getAmount());
 			holder.foodName.setText(allFood.get(position).getName());
 			if (allFood.get(position).getImageUrl().isEmpty()) {
-				System.out.println("FoodAdapter.onBindViewHolder >>> has no image >>" + allFood.get(position).getImageUrl());
 				holder.foodImage.setImageResource(R.drawable.outline_fastfood_white_24);
 			} else {
-				System.out.println("FoodAdapter.onBindViewHolder >>> " + RetroMaster.BASE_URL + allFood.get(position).getImageUrl());
 				Picasso.get().load(RetroMaster.BASE_URL + allFood.get(position).getImageUrl()).into(holder.foodImage, new Callback() {
 					@Override
 					public void onSuccess() {
-
 					}
 
 					@Override
@@ -64,7 +61,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 		return allFood.size();
 	}
 
-	static class FoodViewHolder extends RecyclerView.ViewHolder {
+	class FoodViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		TextView foodName;
 		ImageView foodImage;
@@ -75,13 +72,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 			foodName = itemView.findViewById(R.id.item_name);
 			foodImage = itemView.findViewById(R.id.item_image);
 
+			itemView.setOnClickListener(this);
 			itemView.setTag(this);
 		}
+
+		@Override
+		public void onClick(View v) {
+//			recyclerViewCallback.showSelectedTeam(Integer.parseInt(allFood.get(getAdapterPosition()).getId()));
+			recyclerViewCallback.showSelectedTeam(allFood.get(getAdapterPosition()));
+		}
 	}
-//
-//	@FunctionalInterface
-//	public interface RecyclerViewCallback {
-//
-//		void showSelectedTeam(int id);
-//	}
 }
