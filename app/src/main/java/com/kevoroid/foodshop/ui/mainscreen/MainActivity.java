@@ -3,25 +3,21 @@ package com.kevoroid.foodshop.ui.mainscreen;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
-import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.kevoroid.foodshop.R;
-import com.kevoroid.foodshop.apis.Resource;
-import com.kevoroid.foodshop.apis.Status;
+import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.models.ProductList;
 import com.kevoroid.foodshop.models.viewmodels.ProductListViewModel;
 import com.kevoroid.foodshop.ui.BaseActivity;
-import com.kevoroid.foodshop.utils.NetworkHandler;
 import com.kevoroid.foodshop.utils.PromptHandler;
 
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
 
-	private FragmentPagerAdapter adapterViewPager;
 	private ProductListViewModel productListViewModel;
 
 	// I know its deprecated and better to use Progressbar but for sake of simplicity!
@@ -38,15 +34,17 @@ public class MainActivity extends BaseActivity {
 		progressDialog.setCancelable(false);
 
 
-		// Get the ViewPager and set it's PagerAdapter so that it can display items
-		ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-		viewPager.setAdapter(new ProductsPager(getSupportFragmentManager(), 1));
+		// lets setup viewpager after data received!
+//		// Get the ViewPager and set it's PagerAdapter so that it can display items
+//		ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+//		viewPager.setAdapter(new ProductsPager(getSupportFragmentManager(), 1, productsData));
+//
+//		// Give the TabLayout the ViewPager
+//		TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+//		tabLayout.setupWithViewPager(viewPager);
 
-		// Give the TabLayout the ViewPager
-		TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-		tabLayout.setupWithViewPager(viewPager);
 
-
+		showLoading();
 		productListViewModel = ViewModelProviders.of(this).get(ProductListViewModel.class);
 //		if (NetworkHandler.internetAvailable(this)) {
 		productListViewModel.getProductList().observe(this, getStuff());
@@ -62,7 +60,11 @@ public class MainActivity extends BaseActivity {
 
 			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getName());
 			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getProducts().size());
+			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getProducts().get(0).getDescription());
 			System.out.println("MainActivity.onChanged :: " + productLists.get(1).getName());
+
+			setupViewPager(productLists);
+			hideLoading();
 
 			// try using Resource<T>
 //			if (productLists.status.equals(Status.ERROR)) {
@@ -78,6 +80,13 @@ public class MainActivity extends BaseActivity {
 //				}
 //			}
 		};
+	}
+
+	private void setupViewPager(List<ProductList> productsData) {
+		ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
+		viewPager.setAdapter(new ProductsPager(getSupportFragmentManager(), 1, productsData));
+		TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
+		tabLayout.setupWithViewPager(viewPager);
 	}
 
 	public void showLoading() {
