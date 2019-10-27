@@ -1,9 +1,11 @@
 package com.kevoroid.foodshop.models.repos;
 
 import androidx.lifecycle.MutableLiveData;
+import com.kevoroid.foodshop.BuildConfig;
 import com.kevoroid.foodshop.apis.ApiEndpoints;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.ProductList;
+import junit.framework.Assert;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,6 +67,9 @@ public class MasterRepo {
 
 			@Override
 			public void onFailure(Call<List<ProductList>> call, Throwable t) {
+				if (BuildConfig.DEBUG) {
+					Assert.fail();
+				}
 				t.printStackTrace();
 			}
 		});
