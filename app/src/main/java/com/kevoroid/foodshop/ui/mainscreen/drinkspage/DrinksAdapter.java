@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.Product;
-import com.kevoroid.foodshop.ui.mainscreen.foodpage.FoodAdapter;
+import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -18,9 +18,11 @@ import java.util.List;
 
 public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksViewHolder> {
 
+	private RecyclerViewCallback recyclerViewCallback;
 	private List<Product> allDrinks;
 
-	DrinksAdapter(List<Product> data) {
+	DrinksAdapter(RecyclerViewCallback recyclerViewCallback, List<Product> data) {
+		this.recyclerViewCallback = recyclerViewCallback;
 		this.allDrinks = data;
 	}
 
@@ -34,15 +36,10 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 	@Override
 	public void onBindViewHolder(@NonNull DrinksViewHolder holder, int position) {
 		try {
-			System.out.println("FoodAdapter.onBindViewHolder :::::::::::::::::::: " + allDrinks.size());
-			System.out.println("FoodAdapter.onBindViewHolder :::::::::::::::::::: " + allDrinks.get(position).getName());
-			System.out.println("FoodAdapter.onBindViewHolder :::::::::::::::::::: " + allDrinks.get(position).getSalePrice().getAmount());
 			holder.drinkName.setText(allDrinks.get(position).getName());
 			if (allDrinks.get(position).getImageUrl().isEmpty()) {
-				System.out.println("FoodAdapter.onBindViewHolder >>> has no image >>" + allDrinks.get(position).getImageUrl());
 				holder.drinkImage.setImageResource(R.drawable.outline_fastfood_white_24);
 			} else {
-				System.out.println("FoodAdapter.onBindViewHolder >>> " + RetroMaster.BASE_URL + allDrinks.get(position).getImageUrl());
 				Picasso.get().load(RetroMaster.BASE_URL + allDrinks.get(position).getImageUrl()).into(holder.drinkImage, new Callback() {
 					@Override
 					public void onSuccess() {
@@ -64,7 +61,7 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 		return allDrinks.size();
 	}
 
-	static class DrinksViewHolder extends RecyclerView.ViewHolder {
+	class DrinksViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 		TextView drinkName;
 		ImageView drinkImage;
@@ -75,14 +72,13 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 			drinkName = itemView.findViewById(R.id.item_name);
 			drinkImage = itemView.findViewById(R.id.item_image);
 
+			itemView.setOnClickListener(this);
 			itemView.setTag(this);
 		}
+
+		@Override
+		public void onClick(View v) {
+			recyclerViewCallback.showSelectedTeam(allDrinks.get(getAdapterPosition()));
+		}
 	}
-
-//	@FunctionalInterface
-//	public interface RecyclerViewCallback {
-//
-//		void showSelectedTeam(int id);
-//	}
-
 }
