@@ -38,10 +38,6 @@ public class MasterRepo {
 //		repoApiEndpoints.getProductCategories().enqueue(new Callback<Resource<List<ProductList>>>() {
 //			@Override
 //			public void onResponse(Call<Resource<List<ProductList>>> call, Response<Resource<List<ProductList>>> response) {
-//				System.out.println("MasterRepo.onResponse >> " + response.isSuccessful());
-//				System.out.println("MasterRepo.onResponse >> " + response.body());
-//
-//
 ////				List<ProductList> productList = new ArrayList<>((response.body()));
 ////				productListLiveData.setValue(productList);
 //
@@ -54,7 +50,6 @@ public class MasterRepo {
 //
 //			@Override
 //			public void onFailure(Call<Resource<List<ProductList>>> call, Throwable t) {
-//				System.out.println("MasterRepo.onFailure >> " + t.getLocalizedMessage());
 //				t.printStackTrace();
 //				productListLiveData.setValue(Resource.error(t.getMessage(), null));
 //			}
@@ -63,8 +58,6 @@ public class MasterRepo {
 		repoApiEndpoints.getProductCategories().enqueue(new Callback<List<ProductList>>() {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
-				System.out.println("MasterRepo.onResponse >> " + response.isSuccessful());
-				System.out.println("MasterRepo.onResponse >> " + response.body());
 
 				List<ProductList> productList = new ArrayList<>((response.body()));
 				productListLiveData.postValue(productList);
@@ -72,7 +65,6 @@ public class MasterRepo {
 
 			@Override
 			public void onFailure(Call<List<ProductList>> call, Throwable t) {
-				System.out.println("MasterRepo.onFailure >> " + t.getLocalizedMessage());
 				t.printStackTrace();
 			}
 		});

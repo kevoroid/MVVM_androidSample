@@ -45,26 +45,15 @@ public class MainActivity extends BaseActivity {
 //	private Observer<Resource<List<ProductList>>> getStuff() {
 	private Observer<List<ProductList>> getStuff() {
 		return productLists -> {
-
-			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getName());
-			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getProducts().size());
-			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getProducts().get(0).getDescription());
-			System.out.println("MainActivity.onChanged :: " + productLists.get(1).getName());
-
 			setupViewPager(productLists);
 			hideLoading();
 
 			// try using Resource<T>
 //			if (productLists.status.equals(Status.ERROR)) {
-//				System.out.println("MainActivity.getStuff >>>>>> " + productLists);
-//				System.out.println("MainActivity.getStuff >>>>>> " + productLists.data);
-//				System.out.println("MainActivity.getStuff >>>>>> " + productLists.message);
-//				System.out.println("MainActivity.getStuff >>>>>> " + productLists.status);
+//				// do something with it!
 //			} else {
 //				if (productLists.data != null) {
-//					System.out.println("MainActivity.onChanged :: " + productLists.data.get(0).getName());
-//					System.out.println("MainActivity.onChanged :: " + productLists.data.get(0).getProducts().size());
-//					System.out.println("MainActivity.onChanged :: " + productLists.data.get(1).getName());
+//					// do something with it!
 //				}
 //			}
 		};
