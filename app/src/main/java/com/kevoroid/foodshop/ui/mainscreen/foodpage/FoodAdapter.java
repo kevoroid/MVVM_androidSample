@@ -78,7 +78,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
 		@Override
 		public void onClick(View v) {
-//			recyclerViewCallback.showSelectedTeam(Integer.parseInt(allFood.get(getAdapterPosition()).getId()));
+			// Another way would be to send product's id and fetch it inside fragment -> Integer.parseInt(allFood.get(getAdapterPosition()).getId())
 			recyclerViewCallback.showSelectedTeam(allFood.get(getAdapterPosition()));
 		}
 	}

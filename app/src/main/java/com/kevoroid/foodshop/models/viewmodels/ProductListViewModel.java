@@ -1,9 +1,7 @@
 package com.kevoroid.foodshop.models.viewmodels;
 
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.kevoroid.foodshop.apis.Resource;
 import com.kevoroid.foodshop.models.ProductList;
 import com.kevoroid.foodshop.models.repos.MasterRepo;
 

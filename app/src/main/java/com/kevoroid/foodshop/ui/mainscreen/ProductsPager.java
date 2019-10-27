@@ -26,7 +26,6 @@ public class ProductsPager extends FragmentPagerAdapter {
 	@NonNull
 	@Override
 	public Fragment getItem(int position) {
-		System.out.println("ProductsPager.getItem >> " + position);
 		if (position == 0) {
 			return FoodFragment.newInstance(data.get(0).getProducts());
 		} else {
@@ -42,7 +41,6 @@ public class ProductsPager extends FragmentPagerAdapter {
 	@Nullable
 	@Override
 	public CharSequence getPageTitle(int position) {
-		System.out.println("ProductsPager.getPageTitle >> " + position);
 		return tabTitles[position];
 	}
 }

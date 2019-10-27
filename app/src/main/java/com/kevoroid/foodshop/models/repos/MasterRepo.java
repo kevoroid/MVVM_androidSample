@@ -2,7 +2,6 @@ package com.kevoroid.foodshop.models.repos;
 
 import androidx.lifecycle.MutableLiveData;
 import com.kevoroid.foodshop.apis.ApiEndpoints;
-import com.kevoroid.foodshop.apis.Resource;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.ProductList;
 import retrofit2.Call;

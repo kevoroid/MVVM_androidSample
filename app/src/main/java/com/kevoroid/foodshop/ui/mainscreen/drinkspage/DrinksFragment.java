@@ -35,29 +35,20 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		System.out.println("DrinksFragment.onCreate");
 	}
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		System.out.println("DrinksFragment.onCreateView");
 		return inflater.inflate(R.layout.fragments_drinks, container, false);
 	}
 
 	@Override
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
-		System.out.println("DrinksFragment.onViewCreated");
 
 		ArrayList<Product> arrayList  = null;
 		if (getArguments() != null) {
-			System.out.println("DrinksFragment.onViewCreated not null arguments!");
 			arrayList = getArguments().getParcelableArrayList(DRINKS_BUNDLE);
-			if (arrayList != null) {
-				System.out.println("DrinksFragment.onViewCreated >> " + arrayList);
-				System.out.println("DrinksFragment.onViewCreated >>> " + arrayList.get(0).getName());
-				System.out.println("DrinksFragment.onViewCreated >>> " + arrayList.get(0).getDescription());
-			}
 		}
 
 		drinksAdapter = new DrinksAdapter(this, arrayList);

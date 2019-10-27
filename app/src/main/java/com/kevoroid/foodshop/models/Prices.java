@@ -11,7 +11,7 @@ public class Prices implements Parcelable {
 	@SerializedName("currency")
 	private String currency;
 
-	protected Prices(Parcel in) {
+	private Prices(Parcel in) {
 		amount = in.readString();
 		currency = in.readString();
 	}

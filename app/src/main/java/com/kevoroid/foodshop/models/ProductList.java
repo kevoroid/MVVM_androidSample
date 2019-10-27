@@ -17,7 +17,7 @@ public class ProductList implements Parcelable {
 	@SerializedName("products")
 	private List<Product> products = null;
 
-	protected ProductList(Parcel in) {
+	private ProductList(Parcel in) {
 		id = in.readString();
 		name = in.readString();
 		description = in.readString();

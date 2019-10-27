@@ -32,17 +32,6 @@ public class MainActivity extends BaseActivity {
 		progressDialog.setIndeterminate(true);
 		progressDialog.setCancelable(false);
 
-
-		// lets setup viewpager after data received!
-//		// Get the ViewPager and set it's PagerAdapter so that it can display items
-//		ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-//		viewPager.setAdapter(new ProductsPager(getSupportFragmentManager(), 1, productsData));
-//
-//		// Give the TabLayout the ViewPager
-//		TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
-//		tabLayout.setupWithViewPager(viewPager);
-
-
 		showLoading();
 		productListViewModel = ViewModelProviders.of(this).get(ProductListViewModel.class);
 //		if (NetworkHandler.internetAvailable(this)) {

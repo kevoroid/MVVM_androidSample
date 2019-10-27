@@ -16,7 +16,6 @@ import java.util.Objects;
 public class BottomSheetHelper {
 
 	public static void showProductDetails(Context context, Product product) {
-		System.out.println("FoodFragment.showProductDetails");
 		View bottomSheetView = View.inflate(context, R.layout.bottom_sheet_item_detail, null);
 		BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(Objects.requireNonNull(context));
 		bottomSheetDialog.setContentView(bottomSheetView);
