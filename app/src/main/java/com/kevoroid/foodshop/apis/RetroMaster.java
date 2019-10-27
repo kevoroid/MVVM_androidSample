@@ -1,6 +1,7 @@
 package com.kevoroid.foodshop.apis;
 
 import com.kevoroid.foodshop.BuildConfig;
+import com.kevoroid.foodshop.CommonKeys;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -8,14 +9,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroMaster {
 
-	public static final String BASE_URL = "http://mobcategories.s3-website-eu-west-1.amazonaws.com";
-
 	RetroMaster() {
 	}
 
 	public static Retrofit getInstance() {
 		return new Retrofit.Builder()
-				.baseUrl(BASE_URL)
+				.baseUrl(CommonKeys.BASE_URL)
 				.client(buildHttpClientLogging())
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
@@ -32,6 +31,6 @@ public class RetroMaster {
 	}
 
 	public static String returnProductImageUrl(String url) {
-		return BASE_URL + url;
+		return CommonKeys.BASE_URL + url;
 	}
 }
