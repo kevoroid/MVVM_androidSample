@@ -3,4 +3,6 @@
 	<string name="label_please_wait">Please wait...</string>
 	<string name="we_have_a_problem_err">Houston, we have a problem!</string>
 	<string name="dash">-</string>
+	<string name="label_food">Food</string>
+	<string name="label_drinks">Drinks</string>
 </resources>

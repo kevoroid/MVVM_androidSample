@@ -20,14 +20,14 @@
 <!--			<com.google.android.material.tabs.TabItem-->
 <!--				android:layout_width="wrap_content"-->
 <!--				android:layout_height="wrap_content"-->
-<!--				android:text="Food"-->
-<!--				android:icon="@android:drawable/ic_menu_delete" />-->
+<!--				android:text="@string/label_food"-->
+<!--				android:icon="@drawable/outline_fastfood_white_24" />-->
 
 <!--			<com.google.android.material.tabs.TabItem-->
 <!--				android:layout_width="wrap_content"-->
 <!--				android:layout_height="wrap_content"-->
-<!--				android:text="Drinks"-->
-<!--				android:icon="@android:drawable/ic_menu_add" />-->
+<!--				android:text="@string/label_drinks"-->
+<!--				android:icon="@drawable/outline_fastfood_white_24" />-->
 
 		</com.google.android.material.tabs.TabLayout>
 
