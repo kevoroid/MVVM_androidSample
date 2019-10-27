@@ -19,8 +19,6 @@ public class MasterRepo {
 
 	private ApiEndpoints repoApiEndpoints;
 
-	// try using Resource<T>
-//	private MutableLiveData<Resource<List<ProductList>>> productListLiveData = new MutableLiveData<>();
 	private MutableLiveData<List<ProductList>> productListLiveData = new MutableLiveData<>();
 
 	private MasterRepo() {
@@ -35,28 +33,6 @@ public class MasterRepo {
 	}
 
 	public MutableLiveData<List<ProductList>> getProductList() {
-		// try using Resource<T>
-//		public MutableLiveData<Resource<List<ProductList>>> getProductList() {
-//		repoApiEndpoints.getProductCategories().enqueue(new Callback<Resource<List<ProductList>>>() {
-//			@Override
-//			public void onResponse(Call<Resource<List<ProductList>>> call, Response<Resource<List<ProductList>>> response) {
-////				List<ProductList> productList = new ArrayList<>((response.body()));
-////				productListLiveData.setValue(productList);
-//
-////				List<ProductList> productList = new ArrayList<>();
-////				productList.add(Resource.success(<response.body()>));
-////				productListLiveData.setValue(Resource.success());
-////
-////				productListLiveData.setValue(Resource.success(response.body().data));
-//			}
-//
-//			@Override
-//			public void onFailure(Call<Resource<List<ProductList>>> call, Throwable t) {
-//				t.printStackTrace();
-//				productListLiveData.setValue(Resource.error(t.getMessage(), null));
-//			}
-//		});
-
 		repoApiEndpoints.getProductCategories().enqueue(new Callback<List<ProductList>>() {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {

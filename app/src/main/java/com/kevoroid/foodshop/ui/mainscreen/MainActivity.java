@@ -11,6 +11,7 @@ import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.models.ProductList;
 import com.kevoroid.foodshop.models.viewmodels.ProductListViewModel;
 import com.kevoroid.foodshop.ui.BaseActivity;
+import com.kevoroid.foodshop.utils.NetworkHandler;
 import com.kevoroid.foodshop.utils.PromptHandler;
 
 import java.util.List;
@@ -34,28 +35,17 @@ public class MainActivity extends BaseActivity {
 
 		showLoading();
 		productListViewModel = ViewModelProviders.of(this).get(ProductListViewModel.class);
-//		if (NetworkHandler.internetAvailable(this)) {
-		productListViewModel.getProductList().observe(this, getStuff());
-//		} else {
-//			showErr();
-//		}
+		if (NetworkHandler.internetAvailable(this)) {
+			productListViewModel.getProductList().observe(this, getStuff());
+		} else {
+			showErr();
+		}
 	}
 
-	// try using Resource<T>
-//	private Observer<Resource<List<ProductList>>> getStuff() {
 	private Observer<List<ProductList>> getStuff() {
 		return productLists -> {
 			setupViewPager(productLists);
 			hideLoading();
-
-			// try using Resource<T>
-//			if (productLists.status.equals(Status.ERROR)) {
-//				// do something with it!
-//			} else {
-//				if (productLists.data != null) {
-//					// do something with it!
-//				}
-//			}
 		};
 	}
 

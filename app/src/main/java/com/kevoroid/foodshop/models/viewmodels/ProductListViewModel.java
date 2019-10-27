@@ -11,8 +11,6 @@ public class ProductListViewModel extends ViewModel {
 
 	private MasterRepo masterRepo;
 
-	// try using Resource<T>
-//	private LiveData<Resource<List<ProductList>>> productList;
 	private LiveData<List<ProductList>> productList;
 
 	public ProductListViewModel() {
@@ -22,8 +20,6 @@ public class ProductListViewModel extends ViewModel {
 		}
 	}
 
-	// try using Resource<T>
-//	public LiveData<Resource<List<ProductList>>> getProductList() {
 	public LiveData<List<ProductList>> getProductList() {
 		return productList;
 	}

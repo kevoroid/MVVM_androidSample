@@ -9,8 +9,6 @@ import java.util.List;
 public interface ApiEndpoints {
 
 	@GET(".")
-	// try using Resource<T>
-//	Call<Resource<List<ProductList>>> getProductCategories();
 	Call<List<ProductList>> getProductCategories();
 
 }
