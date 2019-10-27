@@ -18,7 +18,7 @@ public class ProductListViewModel extends ViewModel {
 	public ProductListViewModel() {
 		masterRepo = MasterRepo.getInstance();
 		if (productList == null) {
-			fetchProductList();
+			productList = masterRepo.getProductList();
 		}
 	}
 
@@ -26,9 +26,5 @@ public class ProductListViewModel extends ViewModel {
 //	public LiveData<Resource<List<ProductList>>> getProductList() {
 	public LiveData<List<ProductList>> getProductList() {
 		return productList;
-	}
-
-	private void fetchProductList() {
-		productList = masterRepo.getProductList();
 	}
 }
