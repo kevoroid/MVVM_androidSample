@@ -30,4 +30,8 @@ public class RetroMaster {
 		}
 		return builder.build();
 	}
+
+	public static String returnProductImageUrl(String url) {
+		return BASE_URL + url;
+	}
 }

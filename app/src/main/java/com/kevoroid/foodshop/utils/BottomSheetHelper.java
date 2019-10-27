@@ -28,7 +28,7 @@ public class BottomSheetHelper {
 		itemName.setText(product.getName());
 		itemPrice.setText(product.getSalePrice().getAmount());
 		itemCurrency.setText(product.getSalePrice().getCurrency());
-		Picasso.get().load(RetroMaster.BASE_URL + product.getImageUrl()).into(itemImage, new Callback() {
+		Picasso.get().load(RetroMaster.returnProductImageUrl(product.getImageUrl())).into(itemImage, new Callback() {
 			@Override
 			public void onSuccess() {
 			}

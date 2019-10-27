@@ -40,7 +40,8 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 			if (allDrinks.get(position).getImageUrl().isEmpty()) {
 				holder.drinkImage.setImageResource(R.drawable.outline_fastfood_white_24);
 			} else {
-				Picasso.get().load(RetroMaster.BASE_URL + allDrinks.get(position).getImageUrl()).into(holder.drinkImage, new Callback() {
+				Picasso.get().load(RetroMaster.returnProductImageUrl(allDrinks.get(position).getImageUrl()))
+						.into(holder.drinkImage, new Callback() {
 					@Override
 					public void onSuccess() {
 					}

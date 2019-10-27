@@ -40,7 +40,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 			if (allFood.get(position).getImageUrl().isEmpty()) {
 				holder.foodImage.setImageResource(R.drawable.outline_fastfood_white_24);
 			} else {
-				Picasso.get().load(RetroMaster.BASE_URL + allFood.get(position).getImageUrl()).into(holder.foodImage, new Callback() {
+				Picasso.get().load(RetroMaster.returnProductImageUrl(allFood.get(position).getImageUrl()))
+						.into(holder.foodImage, new Callback() {
 					@Override
 					public void onSuccess() {
 					}
