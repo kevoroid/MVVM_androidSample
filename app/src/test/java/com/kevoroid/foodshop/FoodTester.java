@@ -41,7 +41,6 @@ public class FoodTester {
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 		productListViewModel = new ProductListViewModel();
-//		masterRepo = MasterRepo.getInstance();
 	}
 
 	@Test
@@ -52,7 +51,6 @@ public class FoodTester {
 	@Test
 	public void testNull() {
 		assertNotNull(productListViewModel.getProductList());
-//		assertTrue(productListViewModel.getProductList().hasObservers());
 	}
 
 	@Test
@@ -65,13 +63,6 @@ public class FoodTester {
 		Assert.assertEquals(returnProductListFromResources().get(0).getName(), "Food");
 		Assert.assertEquals(returnProductListFromResources().get(0).getProducts().size(), 4);
 		Assert.assertEquals(returnProductListFromResources().get(0).getProducts().get(3).getSalePrice().getAmount(), "0.01");
-
-//		Type collectionType2 = new TypeToken<Collection<LiveData<ProductList>>>(){}.getType();
-//		LiveData<List<ProductList>> products2 = new Gson().fromJson(returnResourcesTeamsData(), collectionType2);
-
-//		Assert.assertSame(productListViewModel.fetchProductList(), products2);
-
-//		productListViewModel.getProductList();
 	}
 
 	@Test
