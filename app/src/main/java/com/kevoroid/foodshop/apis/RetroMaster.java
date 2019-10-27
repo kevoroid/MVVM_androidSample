@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetroMaster {
 
-	private static final String BASE_URL = "http://mobcategories.s3-website-eu-west-1.amazonaws.com/";
+	public static final String BASE_URL = "http://mobcategories.s3-website-eu-west-1.amazonaws.com";
 
 	RetroMaster() {
 	}

@@ -1,16 +1,15 @@
-package com.kevoroid.foodshop.ui.mainscreen;
+package com.kevoroid.foodshop.ui.mainscreen.foodpage;
 
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.models.Product;
-import com.kevoroid.foodshop.models.ProductList;
 import com.kevoroid.foodshop.ui.BaseFragment;
 
 import java.util.ArrayList;
@@ -19,6 +18,9 @@ import java.util.List;
 public class FoodFragment extends BaseFragment {
 
 	private static final String FOOD_BUNDLE = "FOOD_BUNDLE";
+
+	private RecyclerView recyclerView;
+	private FoodAdapter foodAdapter;
 
 //	private List<Product> foodList = new ArrayList<>();
 
@@ -58,5 +60,11 @@ public class FoodFragment extends BaseFragment {
 				System.out.println("FoodFragment.onViewCreated >>> " + arrayList.get(0).getDescription());
 			}
 		}
+
+		System.out.println("FoodFragment.onViewCreated ---------------------------------");
+		foodAdapter = new FoodAdapter(arrayList);
+		recyclerView = view.findViewById(R.id.food_recyclerview);
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		recyclerView.setAdapter(foodAdapter);
 	}
 }

@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import com.kevoroid.foodshop.models.ProductList;
+import com.kevoroid.foodshop.ui.mainscreen.drinkspage.DrinksFragment;
+import com.kevoroid.foodshop.ui.mainscreen.foodpage.FoodFragment;
 
 import java.util.List;
 
