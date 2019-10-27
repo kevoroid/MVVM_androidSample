@@ -2,4 +2,5 @@
 	<string name="app_name">FoodShop</string>
 	<string name="label_please_wait">Please wait...</string>
 	<string name="we_have_a_problem_err">Houston, we have a problem!</string>
+	<string name="dash">-</string>
 </resources>
