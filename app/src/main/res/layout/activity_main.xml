@@ -6,10 +6,31 @@
 	android:layout_height="match_parent"
 	tools:context=".ui.mainscreen.MainActivity">
 
-	<TextView
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Hello World!"
-		 />
+	<androidx.viewpager.widget.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+		android:id="@+id/viewpager"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+
+		<com.google.android.material.tabs.TabLayout
+			android:id="@+id/sliding_tabs"
+			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			app:tabMode="fixed">
+
+<!--			<com.google.android.material.tabs.TabItem-->
+<!--				android:layout_width="wrap_content"-->
+<!--				android:layout_height="wrap_content"-->
+<!--				android:text="Food"-->
+<!--				android:icon="@android:drawable/ic_menu_delete" />-->
+
+<!--			<com.google.android.material.tabs.TabItem-->
+<!--				android:layout_width="wrap_content"-->
+<!--				android:layout_height="wrap_content"-->
+<!--				android:text="Drinks"-->
+<!--				android:icon="@android:drawable/ic_menu_add" />-->
+
+		</com.google.android.material.tabs.TabLayout>
+
+	</androidx.viewpager.widget.ViewPager>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
