@@ -35,7 +35,7 @@ public class BottomSheetHelper {
 
 			@Override
 			public void onError(Exception e) {
-				itemImage.setImageResource(R.drawable.outline_fastfood_white_48);
+				itemImage.setImageResource(R.drawable.ic_fastfood_24px);
 			}
 		});
 

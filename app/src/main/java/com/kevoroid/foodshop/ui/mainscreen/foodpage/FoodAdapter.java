@@ -38,7 +38,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 		try {
 			holder.foodName.setText(allFood.get(position).getName());
 			if (allFood.get(position).getImageUrl().isEmpty()) {
-				holder.foodImage.setImageResource(R.drawable.outline_fastfood_white_24);
+				holder.foodImage.setImageResource(R.drawable.ic_fastfood_24px);
 			} else {
 				Picasso.get().load(RetroMaster.returnProductImageUrl(allFood.get(position).getImageUrl()))
 						.into(holder.foodImage, new Callback() {
@@ -48,7 +48,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 
 					@Override
 					public void onError(Exception e) {
-						holder.foodImage.setImageResource(R.drawable.outline_fastfood_white_24);
+						holder.foodImage.setImageResource(R.drawable.ic_fastfood_24px);
 					}
 				});
 			}

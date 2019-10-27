@@ -38,7 +38,7 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 		try {
 			holder.drinkName.setText(allDrinks.get(position).getName());
 			if (allDrinks.get(position).getImageUrl().isEmpty()) {
-				holder.drinkImage.setImageResource(R.drawable.outline_fastfood_white_24);
+				holder.drinkImage.setImageResource(R.drawable.ic_fastfood_24px);
 			} else {
 				Picasso.get().load(RetroMaster.returnProductImageUrl(allDrinks.get(position).getImageUrl()))
 						.into(holder.drinkImage, new Callback() {
@@ -48,7 +48,7 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 
 					@Override
 					public void onError(Exception e) {
-						holder.drinkImage.setImageResource(R.drawable.outline_fastfood_white_24);
+						holder.drinkImage.setImageResource(R.drawable.ic_fastfood_24px);
 					}
 				});
 			}
