@@ -1,8 +1,8 @@
 package com.kevoroid.foodshop.models.repos;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import com.kevoroid.foodshop.apis.ApiEndpoints;
+import com.kevoroid.foodshop.apis.Resource;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.ProductList;
 import retrofit2.Call;
@@ -10,7 +10,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class MasterRepo {
@@ -19,6 +18,8 @@ public class MasterRepo {
 
 	private ApiEndpoints repoApiEndpoints;
 
+	// try using Resource<T>
+//	private MutableLiveData<Resource<List<ProductList>>> productListLiveData = new MutableLiveData<>();
 	private MutableLiveData<List<ProductList>> productListLiveData = new MutableLiveData<>();
 
 	private MasterRepo() {
@@ -33,27 +34,50 @@ public class MasterRepo {
 	}
 
 	public MutableLiveData<List<ProductList>> getProductList() {
+		// try using Resource<T>
+//		public MutableLiveData<Resource<List<ProductList>>> getProductList() {
+//		repoApiEndpoints.getProductCategories().enqueue(new Callback<Resource<List<ProductList>>>() {
+//			@Override
+//			public void onResponse(Call<Resource<List<ProductList>>> call, Response<Resource<List<ProductList>>> response) {
+//				System.out.println("MasterRepo.onResponse >> " + response.isSuccessful());
+//				System.out.println("MasterRepo.onResponse >> " + response.body());
+//
+//
+////				List<ProductList> productList = new ArrayList<>((response.body()));
+////				productListLiveData.setValue(productList);
+//
+////				List<ProductList> productList = new ArrayList<>();
+////				productList.add(Resource.success(<response.body()>));
+////				productListLiveData.setValue(Resource.success());
+////
+////				productListLiveData.setValue(Resource.success(response.body().data));
+//			}
+//
+//			@Override
+//			public void onFailure(Call<Resource<List<ProductList>>> call, Throwable t) {
+//				System.out.println("MasterRepo.onFailure >> " + t.getLocalizedMessage());
+//				t.printStackTrace();
+//				productListLiveData.setValue(Resource.error(t.getMessage(), null));
+//			}
+//		});
+
 		repoApiEndpoints.getProductCategories().enqueue(new Callback<List<ProductList>>() {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
 				System.out.println("MasterRepo.onResponse >> " + response.isSuccessful());
-				System.out.println("MasterRepo.onResponse >> " + response);
 				System.out.println("MasterRepo.onResponse >> " + response.body());
 
-				//List<ProductList> productList = new ArrayList<ProductList>((Collection<? extends ProductList>) response.body());
 				List<ProductList> productList = new ArrayList<>((response.body()));
-
 				productListLiveData.postValue(productList);
 			}
 
 			@Override
 			public void onFailure(Call<List<ProductList>> call, Throwable t) {
 				System.out.println("MasterRepo.onFailure >> " + t.getLocalizedMessage());
-				System.out.println("MasterRepo.onFailure >> " + t);
+				t.printStackTrace();
 			}
 		});
 
 		return productListLiveData;
-
 	}
 }

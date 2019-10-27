@@ -35,14 +35,22 @@ public class MainActivity extends BaseActivity {
 
 		productListViewModel = ViewModelProviders.of(this).get(ProductListViewModel.class);
 //		if (NetworkHandler.internetAvailable(this)) {
-			productListViewModel.getProductList().observe(this, getStuff());
+		productListViewModel.getProductList().observe(this, getStuff());
 //		} else {
 //			showErr();
 //		}
 	}
 
-	private Observer<Resource<List<ProductList>>> getStuff() {
+	// try using Resource<T>
+//	private Observer<Resource<List<ProductList>>> getStuff() {
+	private Observer<List<ProductList>> getStuff() {
 		return productLists -> {
+
+			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getName());
+			System.out.println("MainActivity.onChanged :: " + productLists.get(0).getProducts().size());
+			System.out.println("MainActivity.onChanged :: " + productLists.get(1).getName());
+
+			// try using Resource<T>
 //			if (productLists.status.equals(Status.ERROR)) {
 //				System.out.println("MainActivity.getStuff >>>>>> " + productLists);
 //				System.out.println("MainActivity.getStuff >>>>>> " + productLists.data);
