@@ -5,4 +5,5 @@
 	<string name="dash">-</string>
 	<string name="label_food">Food</string>
 	<string name="label_drinks">Drinks</string>
+	<string name="label_about">About</string>
 </resources>
