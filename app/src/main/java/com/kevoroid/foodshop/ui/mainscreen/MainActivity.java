@@ -20,7 +20,6 @@ public class MainActivity extends BaseActivity {
 
 	private ProductListViewModel productListViewModel;
 
-	// I know its deprecated and better to use Progressbar but for sake of simplicity!
 	private ProgressDialog progressDialog;
 
 	@Override
@@ -35,6 +34,7 @@ public class MainActivity extends BaseActivity {
 
 		showLoading();
 		productListViewModel = ViewModelProviders.of(this).get(ProductListViewModel.class);
+		productListViewModel.init();
 		if (NetworkHandler.internetAvailable(this)) {
 			productListViewModel.getProductList().observe(this, getStuff());
 		} else {
@@ -44,14 +44,15 @@ public class MainActivity extends BaseActivity {
 
 	private Observer<List<ProductList>> getStuff() {
 		return productLists -> {
-			setupViewPager(productLists);
+			setupViewPager();
 			hideLoading();
 		};
 	}
 
-	private void setupViewPager(List<ProductList> productsData) {
+	private void setupViewPager() {
 		ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-		viewPager.setAdapter(new ProductsPager(getSupportFragmentManager(), 1, productsData));
+		viewPager.setAdapter(new ProductsPager(getSupportFragmentManager(), 1, productListViewModel.getProductList().getValue()));
+		//viewPager.setOffscreenPageLimit(1); // if ViewPager was extending from FragmentStatePagerAdapter
 		TabLayout tabLayout = (TabLayout) findViewById(R.id.sliding_tabs);
 		tabLayout.setupWithViewPager(viewPager);
 	}
