@@ -10,7 +10,6 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MasterRepo {
@@ -37,8 +36,7 @@ public class MasterRepo {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
 
-				List<ProductList> productList = new ArrayList<>((response.body()));
-				productListLiveData.postValue(productList);
+				productListLiveData.setValue(response.body());
 			}
 
 			@Override
