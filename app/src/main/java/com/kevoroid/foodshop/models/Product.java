@@ -19,6 +19,10 @@ public class Product implements Parcelable {
 	@SerializedName("salePrice")
 	private Prices salePrice;
 
+	public Product(String name) {
+		this.name = name;
+	}
+
 	private Product(Parcel in) {
 		id = in.readString();
 		categoryId = in.readString();
