@@ -7,4 +7,10 @@
 		android:title="@string/label_about"
 		android:icon="@android:drawable/ic_menu_info_details"
 		app:showAsAction="never" />
+
+	<item
+		android:id="@+id/main_menu_add_item"
+		android:title="@string/label_add_new_product"
+		android:icon="@android:drawable/ic_input_add"
+		app:showAsAction="ifRoom" />
 </menu>
