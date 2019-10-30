@@ -26,8 +26,8 @@ public class BottomSheetHelper {
 		TextView itemCurrency = (TextView) bottomSheetView.findViewById(R.id.item_detail_currency);
 
 		itemName.setText(product.getName());
-		itemPrice.setText(product.getSalePrice().getAmount());
-		itemCurrency.setText(product.getSalePrice().getCurrency());
+		if (product.getSalePrice() != null) itemPrice.setText(product.getSalePrice().getAmount());
+		if (product.getSalePrice() != null) itemCurrency.setText(product.getSalePrice().getCurrency());
 		Picasso.get().load(RetroMaster.returnProductImageUrl(product.getImageUrl())).into(itemImage, new Callback() {
 			@Override
 			public void onSuccess() {
