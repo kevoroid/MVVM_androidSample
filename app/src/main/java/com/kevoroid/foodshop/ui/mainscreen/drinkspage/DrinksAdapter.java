@@ -29,15 +29,14 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 	@NonNull
 	@Override
 	public DrinksViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cardview, parent, false);
-		return new DrinksAdapter.DrinksViewHolder(itemView);
+		return new DrinksViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cardview, parent, false));
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull DrinksViewHolder holder, int position) {
 		try {
 			holder.drinkName.setText(allDrinks.get(position).getName());
-			if (allDrinks.get(position).getImageUrl().isEmpty()) {
+			if (allDrinks.get(position).getImageUrl() == null || allDrinks.get(position).getImageUrl().isEmpty()) {
 				holder.drinkImage.setImageResource(R.drawable.ic_fastfood_24px);
 			} else {
 				Picasso.get().load(RetroMaster.returnProductImageUrl(allDrinks.get(position).getImageUrl()))

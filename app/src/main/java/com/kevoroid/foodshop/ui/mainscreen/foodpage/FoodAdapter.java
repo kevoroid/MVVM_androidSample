@@ -29,15 +29,14 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 	@NonNull
 	@Override
 	public FoodViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-		View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cardview, parent, false);
-		return new FoodViewHolder(itemView);
+		return new FoodViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_cardview, parent, false));
 	}
 
 	@Override
 	public void onBindViewHolder(@NonNull FoodViewHolder holder, int position) {
 		try {
 			holder.foodName.setText(allFood.get(position).getName());
-			if (allFood.get(position).getImageUrl().isEmpty()) {
+			if (allFood.get(position).getImageUrl() == null || allFood.get(position).getImageUrl().isEmpty()) {
 				holder.foodImage.setImageResource(R.drawable.ic_fastfood_24px);
 			} else {
 				Picasso.get().load(RetroMaster.returnProductImageUrl(allFood.get(position).getImageUrl()))
