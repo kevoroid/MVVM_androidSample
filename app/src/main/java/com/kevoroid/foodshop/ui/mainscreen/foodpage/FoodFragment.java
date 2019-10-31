@@ -5,24 +5,20 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.kevoroid.foodshop.R;
+import com.kevoroid.foodshop.apis.Status;
 import com.kevoroid.foodshop.models.Product;
-import com.kevoroid.foodshop.models.ProductList;
 import com.kevoroid.foodshop.models.viewmodels.ProductListViewModel;
 import com.kevoroid.foodshop.ui.BaseFragment;
 import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
 import com.kevoroid.foodshop.utils.BottomSheetHelper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 
@@ -57,14 +53,22 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
+		showLoading();
+
 		productListViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ProductListViewModel.class);
-		productListViewModel.getProductList().observe(getActivity(), productLists -> {
-			if (arrayList != null && productListViewModel.getProductList().getValue() != null) {
-				arrayList.clear();
-				arrayList.addAll(productListViewModel.getProductList().getValue().get(0).getProducts());
-				foodAdapter.notifyDataSetChanged();
-				recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().get(0).getProducts().size() - 1);
-//					hideLoading();
+		productListViewModel.getProductList().observe(this, productLists -> {
+			if (Objects.requireNonNull(productListViewModel.getProductList().getValue()).status == Status.ERROR) {
+				showErr();
+			} else {
+				if (arrayList != null && productListViewModel.getProductList().getValue() != null) {
+					int oldListItemsCount = arrayList.size();
+					arrayList.clear();
+					arrayList.addAll(Objects.requireNonNull(productListViewModel.getProductList().getValue().data).get(0).getProducts());
+					foodAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
+					//foodAdapter.notifyDataSetChanged();
+					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(0).getProducts().size() - 1);
+					hideLoading();
+				}
 			}
 		});
 
@@ -82,7 +86,7 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.main_menu_add_item:
-				Toast.makeText(getContext(), getResources().getString(R.string.msg_new_product_added_food), Toast.LENGTH_SHORT).show();
+				showLoading();
 				addNewFood();
 			default:
 				return super.onOptionsItemSelected(item);
@@ -90,8 +94,14 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 	}
 
 	private void addNewFood() {
-//		showLoading();
-		productListViewModel.addNewProduct(0, new Product("Pizza"));
+		productListViewModel.addNewProduct(0, new Product(returnRandomFood()));
+	}
+
+	private String returnRandomFood() {
+		String[] randomFood = {"Pizza", "Burger", "Pasta", "Shake Shack", "Hotdog"};
+		Random random = new Random();
+		int randomNumber = random.nextInt(randomFood.length);
+		return randomFood[randomNumber];
 	}
 
 	@Override
