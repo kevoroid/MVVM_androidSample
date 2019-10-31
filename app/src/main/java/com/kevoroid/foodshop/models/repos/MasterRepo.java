@@ -1,8 +1,10 @@
 package com.kevoroid.foodshop.models.repos;
 
+import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import com.kevoroid.foodshop.BuildConfig;
 import com.kevoroid.foodshop.apis.ApiEndpoints;
+import com.kevoroid.foodshop.apis.Resource;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.ProductList;
 import junit.framework.Assert;
@@ -14,11 +16,13 @@ import java.util.List;
 
 public class MasterRepo {
 
+	private static final String TAG = "MasterRepo";
+
 	private static MasterRepo INSTANCE;
 
 	private ApiEndpoints repoApiEndpoints;
 
-	private MutableLiveData<List<ProductList>> productListLiveData = new MutableLiveData<>();
+	private MutableLiveData<Resource<List<ProductList>>> productListLiveData = new MutableLiveData<>();
 
 	private MasterRepo() {
 		repoApiEndpoints = RetroMaster.getInstance().create(ApiEndpoints.class);
@@ -31,20 +35,20 @@ public class MasterRepo {
 		return INSTANCE;
 	}
 
-	public MutableLiveData<List<ProductList>> getProductList() {
+	public MutableLiveData<Resource<List<ProductList>>> getProductList() {
 		repoApiEndpoints.getProductCategories().enqueue(new Callback<List<ProductList>>() {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
-
-				productListLiveData.setValue(response.body());
+				productListLiveData.setValue(Resource.success(response.body()));
 			}
 
 			@Override
 			public void onFailure(Call<List<ProductList>> call, Throwable t) {
-				if (BuildConfig.DEBUG) {
-					Assert.fail();
-				}
-				t.printStackTrace();
+				Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
+				productListLiveData.setValue(Resource.error(t.getMessage(), null));
+//				if (BuildConfig.DEBUG) {
+//					Assert.fail();
+//				}
 			}
 		});
 
