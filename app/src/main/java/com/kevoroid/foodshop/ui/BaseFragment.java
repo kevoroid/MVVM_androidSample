@@ -35,7 +35,6 @@ public class BaseFragment extends Fragment {
 	}
 
 	public void showErr() {
-		hideLoading();
 		if (getActivity() != null) {
 			PromptHandler.showErrSnackBar(getMainLayout(), getActivity());
 		}

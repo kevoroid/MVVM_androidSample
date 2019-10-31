@@ -60,14 +60,18 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 		productListViewModel.getProductList().observe(this, productLists -> {
 			if (Objects.requireNonNull(productListViewModel.getProductList().getValue()).status == Status.ERROR) {
 				showErr();
+				hideLoading();
 			} else {
-				if (arrayList != null && productListViewModel.getProductList().getValue() != null) {
+				if (arrayList != null && productListViewModel.getProductList().getValue().data != null) {
 					int oldListItemsCount = arrayList.size();
 					arrayList.clear();
-					arrayList.addAll(Objects.requireNonNull(productListViewModel.getProductList().getValue().data).get(1).getProducts());
+					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(1).getProducts());
 					drinksAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
 					//drinksAdapter.notifyDataSetChanged();
 					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(1).getProducts().size() - 1);
+					hideLoading();
+				} else {
+					showErr();
 					hideLoading();
 				}
 			}
@@ -99,10 +103,10 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	}
 
 	private String returnRandomDrinks() {
-		String[] randomDrinks = {"Wine", "Whisky", "Milk", "Ice Tea", "Coffee"};
+		String[] randomFood = {"Wine", "Whisky", "Milk", "Ice Tea", "Coffee"};
 		Random random = new Random();
-		int randomNumber = random.nextInt(randomDrinks.length);
-		return randomDrinks[randomNumber];
+		int randomNumber = random.nextInt(randomFood.length);
+		return randomFood[randomNumber];
 	}
 
 	@Override

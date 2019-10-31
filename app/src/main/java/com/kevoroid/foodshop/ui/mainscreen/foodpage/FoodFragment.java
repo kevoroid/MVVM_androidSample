@@ -59,14 +59,18 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 		productListViewModel.getProductList().observe(this, productLists -> {
 			if (Objects.requireNonNull(productListViewModel.getProductList().getValue()).status == Status.ERROR) {
 				showErr();
+				hideLoading();
 			} else {
-				if (arrayList != null && productListViewModel.getProductList().getValue() != null) {
+				if (arrayList != null && productListViewModel.getProductList().getValue().data != null) {
 					int oldListItemsCount = arrayList.size();
 					arrayList.clear();
-					arrayList.addAll(Objects.requireNonNull(productListViewModel.getProductList().getValue().data).get(0).getProducts());
+					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(0).getProducts());
 					foodAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
 					//foodAdapter.notifyDataSetChanged();
 					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(0).getProducts().size() - 1);
+					hideLoading();
+				} else {
+					showErr();
 					hideLoading();
 				}
 			}
