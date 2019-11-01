@@ -5,4 +5,6 @@
 	<dimen name="material_margin_8dp">8dp</dimen>
 	<dimen name="material_cardview_corner">4dp</dimen>
 	<dimen name="material_elevation_4dp">4dp</dimen>
+	<dimen name="image_small_size">34dp</dimen>
+	<dimen name="image_big_size">180dp</dimen>
 </resources>
