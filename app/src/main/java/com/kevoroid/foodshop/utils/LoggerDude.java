@@ -5,6 +5,9 @@ import com.kevoroid.foodshop.BuildConfig;
 
 public class LoggerDude {
 
+	private LoggerDude() {
+	}
+
 	public static void debug(String tag, String msg) {
 		if (BuildConfig.DEBUG) {
 			Log.d(tag, msg);
