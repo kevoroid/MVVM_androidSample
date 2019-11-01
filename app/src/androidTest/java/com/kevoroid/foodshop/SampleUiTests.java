@@ -22,7 +22,7 @@ import static org.hamcrest.core.AllOf.allOf;
 import static org.junit.Assert.*;
 
 @RunWith(AndroidJUnit4.class)
-public class SomeUiTests {
+public class SampleUiTests {
 
 	@Rule
 	public ActivityTestRule<MainActivity> activityRule = new ActivityTestRule<>(MainActivity.class);
