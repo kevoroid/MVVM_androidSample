@@ -19,7 +19,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:textStyle="bold"
-		android:layout_marginTop="16dp"
+		android:layout_marginTop="@dimen/material_activity_margin"
 		android:textSize="28sp"
 		app:autoSizeTextType="uniform"
 		tools:text="Burgerrrrrrrrrr!" />
@@ -28,30 +28,30 @@
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical"
-		android:layout_marginBottom="8dp"
+		android:layout_marginBottom="@dimen/material_margin_8dp"
 		android:orientation="horizontal">
 
 		<androidx.appcompat.widget.AppCompatTextView
 			android:id="@+id/item_detail_price"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
+			android:layout_marginTop="@dimen/material_margin_8dp"
+			android:layout_marginBottom="@dimen/material_margin_8dp"
 			android:textAllCaps="true"
 			tools:text="Expensive!" />
 
 		<androidx.appcompat.widget.AppCompatTextView
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_margin="8dp"
+			android:layout_margin="@dimen/material_margin_8dp"
 			android:text="@string/dash" />
 
 		<androidx.appcompat.widget.AppCompatTextView
 			android:id="@+id/item_detail_currency"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="8dp"
-			android:layout_marginBottom="8dp"
+			android:layout_marginTop="@dimen/material_margin_8dp"
+			android:layout_marginBottom="@dimen/material_margin_8dp"
 			tools:text="$$$$$" />
 
 	</LinearLayout>

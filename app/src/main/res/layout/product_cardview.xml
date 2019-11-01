@@ -4,15 +4,15 @@
 	android:id="@+id/item_cardview"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:layout_marginLeft="16dp"
-	android:layout_marginRight="16dp"
-	android:layout_marginTop="4dp"
-	android:layout_marginBottom="4dp"
+	android:layout_marginStart="@dimen/material_activity_margin"
+	android:layout_marginEnd="@dimen/material_activity_margin"
+	android:layout_marginTop="@dimen/material_margin_4dp"
+	android:layout_marginBottom="@dimen/material_margin_4dp"
 	android:clickable="true"
 	android:focusable="true"
 	android:foreground="?android:attr/selectableItemBackground"
-	app:cardCornerRadius="4dp"
-	app:cardElevation="4dp">
+	app:cardCornerRadius="@dimen/material_cardview_corner"
+	app:cardElevation="@dimen/material_elevation_4dp">
 
 	<LinearLayout
 		android:id="@+id/item_cardview_layout"
@@ -29,10 +29,10 @@
 			android:layout_gravity="center_vertical"
 			android:gravity="center_vertical"
 			android:lines="1"
-			android:paddingTop="8dp"
-			android:paddingLeft="16dp"
-			android:paddingRight="16dp"
-			android:paddingBottom="8dp"
+			android:paddingTop="@dimen/material_margin_8dp"
+			android:paddingLeft="@dimen/material_activity_margin"
+			android:paddingRight="@dimen/material_activity_margin"
+			android:paddingBottom="@dimen/material_margin_8dp"
 			android:textSize="16sp"
 			tools:text="Shake Shack burger!" />
 
@@ -42,7 +42,7 @@
 			android:layout_height="34dp"
 			android:scaleType="centerCrop"
 			android:layout_gravity="center_vertical"
-			android:layout_margin="16dp" />
+			android:layout_margin="@dimen/material_activity_margin" />
 
 	</LinearLayout>
 
