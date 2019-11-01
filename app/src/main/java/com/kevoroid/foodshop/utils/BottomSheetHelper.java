@@ -44,7 +44,7 @@ public class BottomSheetHelper {
 		try {
 			bottomSheetDialog.show();
 		} catch (Exception x) {
-			LoggerDude.logDebug(TAG, x.getLocalizedMessage());
+			LoggerDude.debug(TAG, x.getLocalizedMessage());
 		}
 	}
 }

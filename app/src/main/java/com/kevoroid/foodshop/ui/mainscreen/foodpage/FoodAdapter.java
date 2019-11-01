@@ -54,7 +54,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 				});
 			}
 		} catch (Exception x) {
-			LoggerDude.logDebug(getClass().getSimpleName(), x.getLocalizedMessage());
+			LoggerDude.debug(getClass().getSimpleName(), x.getLocalizedMessage());
 		}
 	}
 

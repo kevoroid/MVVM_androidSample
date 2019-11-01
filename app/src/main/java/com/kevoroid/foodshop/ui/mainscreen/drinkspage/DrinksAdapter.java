@@ -53,7 +53,7 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 				});
 			}
 		} catch (Exception x) {
-			LoggerDude.logDebug(getClass().getSimpleName(), x.getLocalizedMessage());
+			LoggerDude.debug(getClass().getSimpleName(), x.getLocalizedMessage());
 		}
 	}
 
