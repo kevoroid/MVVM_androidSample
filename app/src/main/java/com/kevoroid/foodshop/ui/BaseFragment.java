@@ -46,6 +46,5 @@ public class BaseFragment extends Fragment {
 			view = getActivity().findViewById(android.R.id.content);
 		}
 		return view;
-
 	}
 }
