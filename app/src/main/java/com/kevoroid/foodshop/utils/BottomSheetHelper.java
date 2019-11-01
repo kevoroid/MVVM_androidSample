@@ -15,6 +15,8 @@ import java.util.Objects;
 
 public class BottomSheetHelper {
 
+	private static final String TAG = "BottomSheetHelper";
+
 	public static void showProductDetails(Context context, Product product) {
 		View bottomSheetView = View.inflate(context, R.layout.bottom_sheet_item_detail, null);
 		BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(Objects.requireNonNull(context));
@@ -41,8 +43,8 @@ public class BottomSheetHelper {
 
 		try {
 			bottomSheetDialog.show();
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception x) {
+			LoggerDude.logDebug(TAG, x.getLocalizedMessage());
 		}
 	}
 }

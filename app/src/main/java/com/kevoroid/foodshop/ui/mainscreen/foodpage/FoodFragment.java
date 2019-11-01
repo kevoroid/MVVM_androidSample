@@ -101,9 +101,11 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 		productListViewModel.addNewProduct(0, new Product(returnRandomFood()));
 	}
 
+	// Leaving these here (not on top) just because this serves as POC and not real prod use-case!
+	private String[] randomFood = {"Pizza", "Burger", "Pasta", "Shake Shack", "Hotdog"};
+	private Random random = new Random();
+
 	private String returnRandomFood() {
-		String[] randomFood = {"Pizza", "Burger", "Pasta", "Shake Shack", "Hotdog"};
-		Random random = new Random();
 		int randomNumber = random.nextInt(randomFood.length);
 		return randomFood[randomNumber];
 	}

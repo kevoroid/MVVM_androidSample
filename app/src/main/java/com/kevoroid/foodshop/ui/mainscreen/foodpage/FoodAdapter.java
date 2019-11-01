@@ -11,11 +11,13 @@ import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
+import com.kevoroid.foodshop.utils.LoggerDude;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+// later on test with ListAdapter
 public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
 
 	private RecyclerViewCallback recyclerViewCallback;
@@ -52,7 +54,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 				});
 			}
 		} catch (Exception x) {
-			x.printStackTrace();
+			LoggerDude.logDebug(getClass().getSimpleName(), x.getLocalizedMessage());
 		}
 	}
 

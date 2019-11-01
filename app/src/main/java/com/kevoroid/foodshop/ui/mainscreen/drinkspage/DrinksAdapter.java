@@ -11,6 +11,7 @@ import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
+import com.kevoroid.foodshop.utils.LoggerDude;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -52,7 +53,7 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 				});
 			}
 		} catch (Exception x) {
-			x.printStackTrace();
+			LoggerDude.logDebug(getClass().getSimpleName(), x.getLocalizedMessage());
 		}
 	}
 

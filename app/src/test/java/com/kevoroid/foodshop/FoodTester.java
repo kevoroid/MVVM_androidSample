@@ -74,8 +74,7 @@ public class FoodTester {
 	}
 
 	private List<ProductList> returnProductListFromResources() {
-		Type collectionType = new TypeToken<Collection<ProductList>>() {
-		}.getType();
+		Type collectionType = new TypeToken<Collection<ProductList>>() {}.getType();
 		return new Gson().fromJson(returnResourcesSteamData(), collectionType);
 	}
 
