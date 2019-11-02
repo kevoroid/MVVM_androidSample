@@ -67,7 +67,6 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 					arrayList.clear();
 					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(1).getProducts());
 					drinksAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
-					//drinksAdapter.notifyDataSetChanged();
 					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(1).getProducts().size() - 1);
 					hideLoading();
 				} else {
@@ -93,6 +92,7 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 			case R.id.main_menu_add_item:
 				showLoading();
 				addNewDrinks();
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}

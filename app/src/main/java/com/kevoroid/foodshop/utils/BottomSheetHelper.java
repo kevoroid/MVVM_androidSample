@@ -20,6 +20,7 @@ public class BottomSheetHelper {
 	public static void showProductDetails(Context context, Product product) {
 		View bottomSheetView = View.inflate(context, R.layout.bottom_sheet_item_detail, null);
 		BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(Objects.requireNonNull(context));
+		bottomSheetDialog.setCanceledOnTouchOutside(true);
 		bottomSheetDialog.setContentView(bottomSheetView);
 
 		TextView itemName = (TextView) bottomSheetView.findViewById(R.id.item_detail_name);
@@ -30,17 +31,9 @@ public class BottomSheetHelper {
 		itemName.setText(product.getName());
 		if (product.getSalePrice() != null) itemPrice.setText(product.getSalePrice().getAmount());
 		if (product.getSalePrice() != null) itemCurrency.setText(product.getSalePrice().getCurrency());
-		Picasso.get().load(RetroMaster.returnProductImageUrl(product.getImageUrl())).into(itemImage, new Callback() {
-			@Override
-			public void onSuccess() {
-			}
-
-			@Override
-			public void onError(Exception e) {
-				itemImage.setImageResource(R.drawable.ic_fastfood_24px);
-			}
-		});
-
+		Picasso.get().load(RetroMaster.returnProductImageUrl(product.getImageUrl()))
+				.error(R.drawable.ic_fastfood_24px)
+				.into(itemImage);
 		try {
 			bottomSheetDialog.show();
 		} catch (Exception x) {

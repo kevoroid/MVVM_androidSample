@@ -42,16 +42,8 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
 				holder.foodImage.setImageResource(R.drawable.ic_fastfood_24px);
 			} else {
 				Picasso.get().load(RetroMaster.returnProductImageUrl(allFood.get(position).getImageUrl()))
-						.into(holder.foodImage, new Callback() {
-					@Override
-					public void onSuccess() {
-					}
-
-					@Override
-					public void onError(Exception e) {
-						holder.foodImage.setImageResource(R.drawable.ic_fastfood_24px);
-					}
-				});
+						.error(R.drawable.ic_fastfood_24px)
+						.into(holder.foodImage);
 			}
 		} catch (Exception x) {
 			LoggerDude.debug(getClass().getSimpleName(), x.getLocalizedMessage());

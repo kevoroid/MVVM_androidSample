@@ -41,16 +41,8 @@ public class DrinksAdapter extends RecyclerView.Adapter<DrinksAdapter.DrinksView
 				holder.drinkImage.setImageResource(R.drawable.ic_fastfood_24px);
 			} else {
 				Picasso.get().load(RetroMaster.returnProductImageUrl(allDrinks.get(position).getImageUrl()))
-						.into(holder.drinkImage, new Callback() {
-					@Override
-					public void onSuccess() {
-					}
-
-					@Override
-					public void onError(Exception e) {
-						holder.drinkImage.setImageResource(R.drawable.ic_fastfood_24px);
-					}
-				});
+						.error(R.drawable.ic_fastfood_24px)
+						.into(holder.drinkImage);
 			}
 		} catch (Exception x) {
 			LoggerDude.debug(getClass().getSimpleName(), x.getLocalizedMessage());

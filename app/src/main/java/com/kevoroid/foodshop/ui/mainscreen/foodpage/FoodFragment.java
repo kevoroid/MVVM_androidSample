@@ -66,7 +66,6 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 					arrayList.clear();
 					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(0).getProducts());
 					foodAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
-					//foodAdapter.notifyDataSetChanged();
 					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(0).getProducts().size() - 1);
 					hideLoading();
 				} else {
@@ -92,6 +91,7 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 			case R.id.main_menu_add_item:
 				showLoading();
 				addNewFood();
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
