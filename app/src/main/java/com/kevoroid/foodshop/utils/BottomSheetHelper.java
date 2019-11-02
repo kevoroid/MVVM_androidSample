@@ -15,6 +15,9 @@ import java.util.Objects;
 
 public class BottomSheetHelper {
 
+	private BottomSheetHelper() {
+	}
+
 	private static final String TAG = "BottomSheetHelper";
 
 	public static void showProductDetails(Context context, Product product) {

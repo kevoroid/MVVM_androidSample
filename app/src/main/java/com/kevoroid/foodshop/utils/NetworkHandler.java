@@ -6,6 +6,9 @@ import android.net.NetworkInfo;
 
 public class NetworkHandler {
 
+	private NetworkHandler() {
+	}
+
 	public static boolean internetAvailable(Context context) {
 		ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 

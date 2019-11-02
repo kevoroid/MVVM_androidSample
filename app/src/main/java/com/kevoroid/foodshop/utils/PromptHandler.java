@@ -9,6 +9,9 @@ import com.kevoroid.foodshop.R;
 
 public class PromptHandler {
 
+	private PromptHandler() {
+	}
+
 	public static void showErrSnackBar(View view, Context context) {
 		Snackbar.make(view,
 				context.getResources().getString(R.string.we_have_a_problem_err),
