@@ -49,9 +49,9 @@ jobs:
           name: Build Debug APK
           command: ./gradlew :app:assembleDebug
 
-      - run:
-          name: Initial build
-          command: ./gradlew clean assembleRelease --no-daemon --stacktrace
+#      - run:
+#          name: Initial build
+#          command: ./gradlew clean assembleRelease --no-daemon --stacktrace
       - store_artifacts:
           path: app/build/outputs/apk/
           destination: apks/
