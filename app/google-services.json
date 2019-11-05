@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "xxx",
-    "firebase_url": "https://foodshop-xxx.firebaseio.com",
-    "project_id": "foodshop-xxx",
-    "storage_bucket": "foodshop-xxx.appspot.com"
+    "project_number": "153596094570",
+    "firebase_url": "https://foodshop-d9539.firebaseio.com",
+    "project_id": "foodshop-d9539",
+    "storage_bucket": "foodshop-d9539.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:xxx",
+        "mobilesdk_app_id": "1:153596094570:android:82e74f494461d7b9f18213",
         "android_client_info": {
           "package_name": "com.kevoroid.foodshop"
         }
       },
       "oauth_client": [
         {
-          "client_id": "xxx",
+          "client_id": "153596094570-ebcflq61j9gu2d1t9mqqlguig1i8e3e3.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "xxx"
+          "current_key": "AIzaSyB4a-xarkxkwfxf-p7BMeLcku1nfuS5xfU"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "xxx",
+              "client_id": "153596094570-ebcflq61j9gu2d1t9mqqlguig1i8e3e3.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
