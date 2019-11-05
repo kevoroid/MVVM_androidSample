@@ -17,6 +17,7 @@ import com.kevoroid.foodshop.models.viewmodels.ProductListViewModel;
 import com.kevoroid.foodshop.ui.BaseFragment;
 import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
 import com.kevoroid.foodshop.utils.BottomSheetHelper;
+import com.kevoroid.foodshop.utils.NetworkHandler;
 
 import java.util.*;
 
@@ -110,7 +111,11 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 	}
 
 	private void addNewFood() {
-		productListViewModel.addNewProduct(0, new Product(returnRandomFood()));
+		if (NetworkHandler.internetAvailable(getActivity())) {
+			productListViewModel.addNewProduct(0, new Product(returnRandomFood()));
+		} else {
+			showConnectionErr();
+		}
 	}
 
 	// Leaving these here (not on top) just because this serves as POC and not real prod use-case!

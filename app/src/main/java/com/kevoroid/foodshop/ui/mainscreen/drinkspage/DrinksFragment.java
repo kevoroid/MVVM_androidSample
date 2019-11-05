@@ -5,14 +5,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.kevoroid.foodshop.R;
-import com.kevoroid.foodshop.YummyApplication;
 import com.kevoroid.foodshop.apis.Status;
 import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.models.viewmodels.ProductListViewModel;
@@ -96,7 +94,6 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 					hideLoading();
 				} else {
 					System.out.println("DrinksFragment  3333");
-					Toast.makeText(YummyApplication.getContext(), "yo yo yo", Toast.LENGTH_LONG).show();
 					showErr();
 					hideLoading();
 				}
@@ -117,7 +114,11 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	}
 
 	private void addNewDrinks() {
-		productListViewModel.addNewProduct(1, new Product(returnRandomDrinks()));
+		if (NetworkHandler.internetAvailable(getActivity())) {
+			productListViewModel.addNewProduct(1, new Product(returnRandomDrinks()));
+		} else {
+			showConnectionErr();
+		}
 	}
 
 	// Leaving these here (not on top) just because this serves as POC and not real prod use-case!
