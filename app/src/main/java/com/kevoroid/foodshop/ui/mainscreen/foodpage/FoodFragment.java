@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.apis.Status;
@@ -65,7 +65,7 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 
 		foodAdapter = new FoodAdapter(this, arrayList);
 		recyclerView = view.findViewById(R.id.food_recyclerview);
-		recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		recyclerView.setAdapter(foodAdapter);
 
 		initObservers();
