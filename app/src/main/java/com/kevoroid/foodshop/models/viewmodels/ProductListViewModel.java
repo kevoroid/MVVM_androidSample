@@ -15,6 +15,7 @@ public class ProductListViewModel extends ViewModel {
 
 	private MasterRepo masterRepo;
 
+	// Could've used 2 viewModels; one for food page and one for drinks, but using one for sake of this sample!
 	private MutableLiveData<Resource<List<ProductList>>> productList;
 
 	public void init() {

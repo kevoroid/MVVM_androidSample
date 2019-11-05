@@ -54,12 +54,9 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		System.out.println("FoodFragment.onViewCreated -------------------------");
-
 		showLoading();
 
 		if (getArguments() != null) {
-			System.out.println("FoodFragment.onViewCreated getarguments");
 			arrayList = getArguments().getParcelableArrayList(FOOD_BUNDLE);
 		}
 
@@ -74,23 +71,17 @@ public class FoodFragment extends BaseFragment implements RecyclerViewCallback {
 	private void initObservers() {
 		productListViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ProductListViewModel.class);
 		productListViewModel.getProductList().observe(getActivity(), productLists -> {
-			System.out.println("FoodFragment.initObservers");
 			if (Objects.requireNonNull(productListViewModel.getProductList().getValue()).status == Status.ERROR) {
-				System.out.println("food 111");
 				showErr();
 				hideLoading();
 			} else {
 				if (arrayList != null && productListViewModel.getProductList().getValue().data != null) {
-					System.out.println("food 22222");
-//					int oldListItemsCount = arrayList.size();
 					arrayList.clear();
 					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(0).getProducts());
-//					foodAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
 					foodAdapter.notifyDataSetChanged();
 					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(0).getProducts().size() - 1);
 					hideLoading();
 				} else {
-					System.out.println("food 333");
 					showErr();
 					hideLoading();
 				}

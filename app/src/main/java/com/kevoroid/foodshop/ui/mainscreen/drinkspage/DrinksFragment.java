@@ -57,12 +57,9 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		System.out.println("DrinksFragment.onViewCreated -----------------------------------");
-
 		showLoading();
 
 		if (getArguments() != null) {
-			System.out.println("DrinksFragment.onViewCreated getArguments");
 			arrayList = getArguments().getParcelableArrayList(DRINKS_BUNDLE);
 		}
 
@@ -77,23 +74,17 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	private void initObservers() {
 		productListViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ProductListViewModel.class);
 		productListViewModel.getProductList().observe(getActivity(), productLists -> {
-			System.out.println("DrinksFragment.initObservers");
 			if (Objects.requireNonNull(productListViewModel.getProductList().getValue()).status == Status.ERROR) {
-				System.out.println("DrinksFragment 111");
 				showErr();
 				hideLoading();
 			} else {
 				if (arrayList != null && productListViewModel.getProductList().getValue().data != null) {
-					System.out.println("DrinksFragment  222");
-//					int oldListItemsCount = arrayList.size();
 					arrayList.clear();
 					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(1).getProducts());
-//					drinksAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
 					drinksAdapter.notifyDataSetChanged();
 					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(1).getProducts().size() - 1);
 					hideLoading();
 				} else {
-					System.out.println("DrinksFragment  3333");
 					showErr();
 					hideLoading();
 				}
