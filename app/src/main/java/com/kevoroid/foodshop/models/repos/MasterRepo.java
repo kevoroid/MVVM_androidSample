@@ -37,7 +37,11 @@ public class MasterRepo {
 		repoApiEndpoints.getProductCategories().enqueue(new Callback<List<ProductList>>() {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
-				productListLiveData.setValue(Resource.success(response.body()));
+				if (response.isSuccessful()) {
+					productListLiveData.setValue(Resource.success(response.body()));
+				} else {
+					productListLiveData.setValue(Resource.error(response.message(), null));
+				}
 			}
 
 			@Override
