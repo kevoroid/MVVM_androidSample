@@ -105,7 +105,7 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	}
 
 	private void addNewDrinks() {
-		if (NetworkHandler.internetAvailable(getActivity())) {
+		if (getActivity() != null && NetworkHandler.internetAvailable(getActivity())) {
 			productListViewModel.addNewProduct(1, new Product(returnRandomDrinks()));
 		} else {
 			showConnectionErr();
