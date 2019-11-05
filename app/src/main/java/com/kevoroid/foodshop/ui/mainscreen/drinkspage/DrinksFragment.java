@@ -5,18 +5,21 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.kevoroid.foodshop.R;
+import com.kevoroid.foodshop.YummyApplication;
 import com.kevoroid.foodshop.apis.Status;
 import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.models.viewmodels.ProductListViewModel;
 import com.kevoroid.foodshop.ui.BaseFragment;
 import com.kevoroid.foodshop.ui.mainscreen.RecyclerViewCallback;
 import com.kevoroid.foodshop.utils.BottomSheetHelper;
+import com.kevoroid.foodshop.utils.NetworkHandler;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,27 +59,12 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
 
-		productListViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ProductListViewModel.class);
-		productListViewModel.getProductList().observe(this, productLists -> {
-			if (Objects.requireNonNull(productListViewModel.getProductList().getValue()).status == Status.ERROR) {
-				showErr();
-				hideLoading();
-			} else {
-				if (arrayList != null && productListViewModel.getProductList().getValue().data != null) {
-					int oldListItemsCount = arrayList.size();
-					arrayList.clear();
-					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(1).getProducts());
-					drinksAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
-					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(1).getProducts().size() - 1);
-					hideLoading();
-				} else {
-					showErr();
-					hideLoading();
-				}
-			}
-		});
+		System.out.println("DrinksFragment.onViewCreated -----------------------------------");
+
+		showLoading();
 
 		if (getArguments() != null) {
+			System.out.println("DrinksFragment.onViewCreated getArguments");
 			arrayList = getArguments().getParcelableArrayList(DRINKS_BUNDLE);
 		}
 
@@ -84,6 +72,36 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 		recyclerView = view.findViewById(R.id.drinks_recyclerview);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 		recyclerView.setAdapter(drinksAdapter);
+
+		initObservers();
+	}
+
+	private void initObservers() {
+		productListViewModel = ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ProductListViewModel.class);
+		productListViewModel.getProductList().observe(getActivity(), productLists -> {
+			System.out.println("DrinksFragment.initObservers");
+			if (Objects.requireNonNull(productListViewModel.getProductList().getValue()).status == Status.ERROR) {
+				System.out.println("DrinksFragment 111");
+				showErr();
+				hideLoading();
+			} else {
+				if (arrayList != null && productListViewModel.getProductList().getValue().data != null) {
+					System.out.println("DrinksFragment  222");
+//					int oldListItemsCount = arrayList.size();
+					arrayList.clear();
+					arrayList.addAll(productListViewModel.getProductList().getValue().data.get(1).getProducts());
+//					drinksAdapter.notifyItemChanged(oldListItemsCount + 1, arrayList);
+					drinksAdapter.notifyDataSetChanged();
+					recyclerView.smoothScrollToPosition(productListViewModel.getProductList().getValue().data.get(1).getProducts().size() - 1);
+					hideLoading();
+				} else {
+					System.out.println("DrinksFragment  3333");
+					Toast.makeText(YummyApplication.getContext(), "yo yo yo", Toast.LENGTH_LONG).show();
+					showErr();
+					hideLoading();
+				}
+			}
+		});
 	}
 
 	@Override
