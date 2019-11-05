@@ -12,6 +12,8 @@ import com.kevoroid.foodshop.utils.PromptHandler;
 
 public class BaseActivity extends AppCompatActivity {
 
+
+	@SuppressWarnings("deprecation")
 	private ProgressDialog progressDialog;
 
 	@Override
@@ -38,6 +40,10 @@ public class BaseActivity extends AppCompatActivity {
 
 	public void showErr() {
 		PromptHandler.showErrSnackBar(getMainLayout(), this);
+	}
+
+	public void showConnectionErr() {
+		PromptHandler.showConnectionErrSnackBar(getMainLayout(), this);
 	}
 
 	private View getMainLayout() {

@@ -10,6 +10,7 @@ import com.kevoroid.foodshop.utils.PromptHandler;
 
 public class BaseFragment extends Fragment {
 
+	@SuppressWarnings("deprecation")
 	private ProgressDialog progressDialog;
 
 	@Override
@@ -35,6 +36,12 @@ public class BaseFragment extends Fragment {
 	}
 
 	public void showErr() {
+		if (getActivity() != null) {
+			PromptHandler.showErrSnackBar(getMainLayout(), getActivity());
+		}
+	}
+
+	public void showConnectionErr() {
 		if (getActivity() != null) {
 			PromptHandler.showErrSnackBar(getMainLayout(), getActivity());
 		}

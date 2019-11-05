@@ -14,7 +14,14 @@ public class PromptHandler {
 
 	public static void showErrSnackBar(View view, Context context) {
 		Snackbar.make(view,
-				context.getResources().getString(R.string.we_have_a_problem_err),
+				context.getResources().getString(R.string.err_msg_we_have_a_problem),
+				BaseTransientBottomBar.LENGTH_LONG)
+				.show();
+	}
+
+	public static void showConnectionErrSnackBar(View view, Context context) {
+		Snackbar.make(view,
+				context.getResources().getString(R.string.err_msg_no_internet),
 				BaseTransientBottomBar.LENGTH_LONG)
 				.show();
 	}
