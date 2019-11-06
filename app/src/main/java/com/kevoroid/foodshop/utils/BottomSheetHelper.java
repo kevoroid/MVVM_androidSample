@@ -45,7 +45,7 @@ public class BottomSheetHelper {
 			// Need to set layout param app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" in order to use below code!
 			//LinearLayout bottomSheet = bottomSheetDialog.findViewById(R.id.bottom_sheet_item_detail_inner_layout);
 			if (bottomSheet != null) {
-				BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED)
+				BottomSheetBehavior.from(bottomSheet).setState(BottomSheetBehavior.STATE_EXPANDED);
 			}
 		});
 
