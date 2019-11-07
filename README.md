@@ -1,8 +1,6 @@
 # Sample Android app {MVVM, LiveData, ViewPage/TabLayout ...}
 
-
 [![CircleCI](https://circleci.com/gh/kevoroid/foodshop_androidsample.svg?style=svg)](https://circleci.com/gh/kevoroid/foodshop_androidsample)
-
 
 Some screenshots of the app:
 
