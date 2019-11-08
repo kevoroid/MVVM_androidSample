@@ -1,5 +1,6 @@
 package com.kevoroid.foodshop.ui.mainscreen.drinkspage;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -67,7 +69,11 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 
 		drinksAdapter = new DrinksAdapter(this, arrayList);
 		recyclerView = view.findViewById(R.id.drinks_recyclerview);
-		recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+		} else {
+			recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+		}
 		recyclerView.setAdapter(drinksAdapter);
 
 		initObservers();
