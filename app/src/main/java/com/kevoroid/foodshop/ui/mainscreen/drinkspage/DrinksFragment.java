@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.kevoroid.foodshop.R;
 import com.kevoroid.foodshop.apis.Status;
 import com.kevoroid.foodshop.models.Product;
@@ -32,6 +33,7 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	private DrinksAdapter drinksAdapter;
 	private ArrayList<Product> arrayList;
 
+	private BottomSheetDialog bottomSheetDialog;
 	private ProductListViewModel productListViewModel;
 
 	public static DrinksFragment newInstance(List<Product> drinkList) {
@@ -113,6 +115,7 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 	}
 
 	// Leaving these here (not on top) just because this serves as POC and not real prod use-case!
+	// Note: these are not saved/cached! upon restart of the app, the default set from API with be fetched again and displayed!
 	private String[] randomFood = {"Wine", "Whisky", "Milk", "Ice Tea", "Coffee"};
 	private Random random = new Random();
 
@@ -123,6 +126,21 @@ public class DrinksFragment extends BaseFragment implements RecyclerViewCallback
 
 	@Override
 	public void showSelectedTeam(Product id) {
-		BottomSheetHelper.showProductDetails(getActivity(), id);
+		//BottomSheetHelper.showProductDetails(getActivity(), id);
+		bottomSheetDialog = BottomSheetHelper.showProductDetails(getActivity(), id);
+		bottomSheetDialog.show();
+	}
+
+	@Override
+	public void onStop() {
+		super.onStop();
+	}
+
+	@Override
+	public void onDestroy() {
+		super.onDestroy();
+		if (bottomSheetDialog != null) {
+			bottomSheetDialog.cancel();
+		}
 	}
 }
