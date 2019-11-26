@@ -2,9 +2,11 @@ package com.kevoroid.foodshop.models.repos;
 
 import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
+import com.kevoroid.foodshop.DaggerYummyComponent;
+import com.kevoroid.foodshop.YummyApplication;
+import com.kevoroid.foodshop.YummyComponent;
 import com.kevoroid.foodshop.apis.ApiEndpoints;
 import com.kevoroid.foodshop.apis.Resource;
-import com.kevoroid.foodshop.apis.RetroMaster;
 import com.kevoroid.foodshop.models.ProductList;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -17,19 +19,16 @@ import java.util.List;
 @Singleton
 public class MasterRepo {
 
-	private static final String TAG = "MasterRepo";
-
-	private ApiEndpoints repoApiEndpoints;
+	private final String TAG = "MasterRepo";
 
 	private MutableLiveData<Resource<List<ProductList>>> productListLiveData = new MutableLiveData<>();
 
 	@Inject
 	public MasterRepo() {
-		repoApiEndpoints = RetroMaster.getInstance().create(ApiEndpoints.class);
 	}
 
 	public MutableLiveData<Resource<List<ProductList>>> getProductList() {
-		repoApiEndpoints.getProductCategories().enqueue(new Callback<List<ProductList>>() {
+		YummyApplication.getRetroMaster().getProductCategories().enqueue(new Callback<List<ProductList>>() {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
 				if (response.isSuccessful()) {

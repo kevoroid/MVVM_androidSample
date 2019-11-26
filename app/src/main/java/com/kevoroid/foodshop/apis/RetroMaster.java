@@ -2,17 +2,21 @@ package com.kevoroid.foodshop.apis;
 
 import com.kevoroid.foodshop.BuildConfig;
 import com.kevoroid.foodshop.CommonKeys;
+import dagger.Module;
+import dagger.Provides;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import javax.inject.Singleton;
+
+@Module
 public class RetroMaster {
 
-	RetroMaster() {
-	}
-
-	public static Retrofit getInstance() {
+	@Singleton
+	@Provides
+	public Retrofit getRetrofit() {
 		return new Retrofit.Builder()
 				.baseUrl(CommonKeys.BASE_URL)
 				.client(buildHttpClientLogging())
@@ -20,7 +24,8 @@ public class RetroMaster {
 				.build();
 	}
 
-	private static OkHttpClient buildHttpClientLogging() {
+	@Provides
+	public OkHttpClient buildHttpClientLogging() {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
 		HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 		httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -28,6 +33,11 @@ public class RetroMaster {
 			builder.addInterceptor(httpLoggingInterceptor);
 		}
 		return builder.build();
+	}
+
+	@Provides
+	public ApiEndpoints getApiEndpoints(Retrofit retrofit) {
+		return retrofit.create(ApiEndpoints.class);
 	}
 
 	public static String returnProductImageUrl(String url) {
