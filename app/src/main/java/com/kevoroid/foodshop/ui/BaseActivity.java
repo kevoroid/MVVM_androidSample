@@ -12,7 +12,6 @@ import com.kevoroid.foodshop.utils.PromptHandler;
 
 public class BaseActivity extends AppCompatActivity {
 
-
 	@SuppressWarnings("deprecation")
 	private ProgressDialog progressDialog;
 
