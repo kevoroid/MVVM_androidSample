@@ -10,27 +10,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import java.util.List;
 
+@Singleton
 public class MasterRepo {
 
 	private static final String TAG = "MasterRepo";
-
-	private static MasterRepo INSTANCE;
 
 	private ApiEndpoints repoApiEndpoints;
 
 	private MutableLiveData<Resource<List<ProductList>>> productListLiveData = new MutableLiveData<>();
 
-	private MasterRepo() {
+	@Inject
+	public MasterRepo() {
 		repoApiEndpoints = RetroMaster.getInstance().create(ApiEndpoints.class);
-	}
-
-	public static synchronized MasterRepo getInstance() {
-		if (INSTANCE == null) {
-			INSTANCE = new MasterRepo();
-		}
-		return INSTANCE;
 	}
 
 	public MutableLiveData<Resource<List<ProductList>>> getProductList() {

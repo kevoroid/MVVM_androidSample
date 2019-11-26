@@ -3,17 +3,22 @@ package com.kevoroid.foodshop.models.viewmodels;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import com.kevoroid.foodshop.DaggerYummyComponent;
+import com.kevoroid.foodshop.YummyApplication;
+import com.kevoroid.foodshop.YummyComponent;
 import com.kevoroid.foodshop.apis.Resource;
 import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.models.ProductList;
 import com.kevoroid.foodshop.models.repos.MasterRepo;
 
+import javax.inject.Inject;
 import java.util.List;
 import java.util.Objects;
 
 public class ProductListViewModel extends ViewModel {
 
-	private MasterRepo masterRepo;
+	@Inject
+	public MasterRepo masterRepo;
 
 	// Could've used 2 viewModels; one for food page and one for drinks, but using one for sake of this sample!
 	private MutableLiveData<Resource<List<ProductList>>> productList;
@@ -23,8 +28,7 @@ public class ProductListViewModel extends ViewModel {
 			return;
 		}
 
-		masterRepo = MasterRepo.getInstance();
-		productList = masterRepo.getProductList();
+		productList = YummyApplication.getRepo().getProductList();
 	}
 
 	public LiveData<Resource<List<ProductList>>> getProductList() {
