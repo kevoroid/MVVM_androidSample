@@ -22,12 +22,8 @@ public class YummyApplication extends Application {
 		yummyComponent = DaggerYummyComponent.create();
 	}
 
-	public static MasterRepo getRepo() {
-		return yummyComponent.getRepo();
-	}
-
-	public static ApiEndpoints getRetroMaster() {
-		return yummyComponent.getRetroMaster();
+	public static YummyComponent getYummyComponent() {
+		return yummyComponent;
 	}
 
 	public static Context getContext() {

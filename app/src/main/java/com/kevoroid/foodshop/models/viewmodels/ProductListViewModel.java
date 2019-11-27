@@ -26,7 +26,7 @@ public class ProductListViewModel extends ViewModel {
 			return;
 		}
 
-		productList = YummyApplication.getRepo().getProductList();
+		productList = YummyApplication.getYummyComponent().getRepo().getProductList();
 	}
 
 	public LiveData<Resource<List<ProductList>>> getProductList() {

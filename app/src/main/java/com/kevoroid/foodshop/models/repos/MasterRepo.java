@@ -28,7 +28,7 @@ public class MasterRepo {
 	}
 
 	public MutableLiveData<Resource<List<ProductList>>> getProductList() {
-		YummyApplication.getRetroMaster().getProductCategories().enqueue(new Callback<List<ProductList>>() {
+		YummyApplication.getYummyComponent().getRetroMaster().getProductCategories().enqueue(new Callback<List<ProductList>>() {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
 				if (response.isSuccessful()) {
