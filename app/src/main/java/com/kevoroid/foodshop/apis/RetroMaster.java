@@ -24,7 +24,6 @@ public class RetroMaster {
 				.build();
 	}
 
-	@Provides
 	public OkHttpClient buildHttpClientLogging() {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
 		HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
