@@ -15,7 +15,7 @@ public class YummyApplication extends Application {
 	public void onCreate() {
 		super.onCreate();
 
-		YummyApplication.mContext = getApplicationContext();
+		mContext = getApplicationContext();
 
 		yummyComponent = DaggerYummyComponent.create();
 	}
@@ -24,7 +24,7 @@ public class YummyApplication extends Application {
 		return yummyComponent;
 	}
 
-	public static Context getContext() {
+	public static Context getMyApplicationContext() {
 		return mContext;
 	}
 }
