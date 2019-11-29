@@ -16,7 +16,7 @@ public class RetroMaster {
 
 	@Singleton
 	@Provides
-	public Retrofit getRetrofit() {
+	public static Retrofit getRetrofit() {
 		return new Retrofit.Builder()
 				.baseUrl(CommonKeys.BASE_URL)
 				.client(buildHttpClientLogging())
@@ -24,7 +24,7 @@ public class RetroMaster {
 				.build();
 	}
 
-	public OkHttpClient buildHttpClientLogging() {
+	public static OkHttpClient buildHttpClientLogging() {
 		OkHttpClient.Builder builder = new OkHttpClient.Builder();
 		HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
 		httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -35,7 +35,7 @@ public class RetroMaster {
 	}
 
 	@Provides
-	public ApiEndpoints getApiEndpoints(Retrofit retrofit) {
+	public static ApiEndpoints getApiEndpoints(Retrofit retrofit) {
 		return retrofit.create(ApiEndpoints.class);
 	}
 
