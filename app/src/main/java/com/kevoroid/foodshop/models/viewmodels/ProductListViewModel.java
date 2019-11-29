@@ -7,16 +7,11 @@ import com.kevoroid.foodshop.YummyApplication;
 import com.kevoroid.foodshop.apis.Resource;
 import com.kevoroid.foodshop.models.Product;
 import com.kevoroid.foodshop.models.ProductList;
-import com.kevoroid.foodshop.models.repos.MasterRepo;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.Objects;
 
 public class ProductListViewModel extends ViewModel {
-
-	@Inject
-	public MasterRepo masterRepo;
 
 	// Could've used 2 viewModels; one for food page and one for drinks, but using one for sake of this sample!
 	private MutableLiveData<Resource<List<ProductList>>> productList;
