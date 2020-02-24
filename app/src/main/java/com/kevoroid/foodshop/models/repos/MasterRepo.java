@@ -32,16 +32,16 @@ public class MasterRepo {
 			@Override
 			public void onResponse(Call<List<ProductList>> call, Response<List<ProductList>> response) {
 				if (response.isSuccessful()) {
-					productListLiveData.setValue(Resource.success(response.body()));
+					productListLiveData.postValue(Resource.success(response.body()));
 				} else {
-					productListLiveData.setValue(Resource.error(response.message(), null));
+					productListLiveData.postValue(Resource.error(response.message(), null));
 				}
 			}
 
 			@Override
 			public void onFailure(Call<List<ProductList>> call, Throwable t) {
 				Log.d(TAG, "onFailure: " + t.getLocalizedMessage());
-				productListLiveData.setValue(Resource.error(t.getMessage(), null));
+				productListLiveData.postValue(Resource.error(t.getMessage(), null));
 			}
 		});
 
