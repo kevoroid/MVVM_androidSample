@@ -23,10 +23,17 @@ jobs:
     - name: Lint check
       run: ./gradlew lint
     
+    - name: Upload lint report
+      uses: actions/upload-artifact@v1
+      with:
+        name: LintReports
+        path: app/build/reports/
+    
     - name: Build Debug APK
       run: ./gradlew assembleDebug
     
-    - uses: actions/upload-artifact@v1
+    - name: Upload APK
+      uses: actions/upload-artifact@v1
       with:
-        name: Upload APK
+        name: DebugAPK
         path: app/build/outputs/apk/debug/
