@@ -1,5 +1,7 @@
 # Sample Android app {MVVM, LiveData, ViewPage/TabLayout ...}
 
+![Android CI](https://github.com/kevoroid/MVVM_androidSample/workflows/Android%20CI/badge.svg)
+
 [![CircleCI](https://circleci.com/gh/kevoroid/MVVM_androidSample.svg?style=svg)](https://circleci.com/gh/kevoroid/MVVM_androidSample)
 
 Some screenshots of the app:
